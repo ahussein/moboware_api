@@ -67,4 +67,4 @@ def list_routes():
     return jsonify({'routes': sorted(output), 'status': 'success'}), constants.HTTP_OK
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

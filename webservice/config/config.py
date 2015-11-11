@@ -5,7 +5,7 @@ class DefaultConfig(object):
     APP_NAME = 'moboware-api'
     DEBUG = True
     LOG_LEVEL = 'WARNING'
-    LOG_DIR = 'logs/'
+    LOG_DIR = '../logs/'
     SQLALCHEMY_DATABASE_URI = "sqlite:///database/api.db"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SECRET_KEY = "Ch4ng3M3!"

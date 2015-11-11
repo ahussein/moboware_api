@@ -30,7 +30,7 @@ def require_app_key(f):
         if find_api_key(key):
             return f(*args, **kwargs)
         else:
-            log.warning("Unauthorized key %s trying to use API: " % key)
+            log.warning("Unauthorized key %s trying to use API: %s" % (key, request.url))
             abort(401)
 
     return decorated
