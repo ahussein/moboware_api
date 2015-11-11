@@ -12,6 +12,10 @@ venv/*
 # database
 *.db
 
+# vagrant
+.vagrant/
+Vagrantfile
+
 # Distribution / packaging
 .Python
 env/
