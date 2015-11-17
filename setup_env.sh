@@ -2,7 +2,7 @@
 set -e
 
 sudo apt-get update
-sudo apt-get install build-essential python-dev python-pip
+sudo apt-get install -y build-essential python-dev python-pip nginx
 rm -rf venv
 virtualenv venv
 source venv/bin/activate
@@ -12,5 +12,4 @@ echo "Initialize server"
 python manage.py -i
 
 ehco "Starting server"
-cd webservice
-uwsgi --http 0.0.0.0:8080 --home ../venv --wsgi-file __init__.py --callable app --master
+uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file webservice/__init__.py --callable app --master

@@ -3,17 +3,18 @@ __version__ = 1.1
 version = __version__
 
 import os
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
+
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from logbook import Logger
-import config
-from utils.logging import DevelopmentLoggingSetup
+from webservice import config
+from webservice.utils.logging import DevelopmentLoggingSetup
 from flask import  jsonify
-from utils import constants
-from utils import utils
+from webservice.utils import constants
 
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 # Start the Flask awesomeness.
 app = Flask(__name__)
 
@@ -37,17 +38,17 @@ log_setup = DevelopmentLoggingSetup(app.config['LOG_LEVEL'])
 log_setup.set_default_setup(logger = log, file_path=app.config['LOG_DIR'] + '%s.log' % app.config['APP_NAME'])
 
 # Load App Key Auth Decorators
-from modules.authentication.decorators import require_app_key
+from webservice.modules.authentication.decorators import require_app_key
 
 ## Api routing
-from modules.authentication.controllers import authentication_mod
+from webservice.modules.authentication.controllers import authentication_mod
 app.register_blueprint(authentication_mod)
 
-from modules.subscription.controllers import subscription_mod
+from webservice.modules.subscription.controllers import subscription_mod
 app.register_blueprint(subscription_mod)
 
 
-@app.route("/version", methods=['POST', 'OPTIONS'])
+@app.route("/api/version", methods=['POST', 'OPTIONS'])
 @require_app_key
 def api_latest_version():
     """
