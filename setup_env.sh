@@ -10,6 +10,3 @@ pip install -r requirements.txt
 
 echo "Initialize server"
 python manage.py -i
-
-echo "Starting server"
-uwsgi --http 0.0.0.0:8080 --home venv --wsgi-file webservice/__init__.py --callable app --master
