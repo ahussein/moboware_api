@@ -10,5 +10,7 @@ sudo cp config/webservice_uwsgi_upstart.config /etc/init/moboware_api.conf
 sudo cp config/webservice_nginx /etc/nginx/sites-available/moboware_api
 sudo ln -s /etc/nginx/sites-available/moboware_api /etc/nginx/sites-enabled/
 
+mkdir -p logs/uwsgi
+
 echo "Starting server"
 sudo start moboware_api
